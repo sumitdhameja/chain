@@ -53,17 +53,20 @@
         if (selValue == 'module1') {
             $.getJSON('./questions1.json', function (data) {
                 questions = data;
+                questions.shuffle();
                 document.querySelector('.number').innerHTML = questions.length.toString();
             });
         }
         else if (selValue == 'module2') {
             $.getJSON('./questions2.json', function (data) {
                 questions = data;
+                questions.shuffle();
                 document.querySelector('.number').innerHTML = questions.length.toString();
             });
         } else if (selValue == 'module3') {
             $.getJSON('./questions3.json', function (data) {
                 questions = data;
+                questions.shuffle();
                 document.querySelector('.number').innerHTML = questions.length.toString();
             });
         }
@@ -220,12 +223,11 @@
                 numCorrect++;
             }
         }
-        var percentage = Math.round((numCorrect/questionsAnswered)*100) || 0;
+        var percentage = Math.round((numCorrect / questionsAnswered) * 100) || 0;
         var timer = $("#worked");
         score.append('<br />You got ' + numCorrect + ' questions out of ' +
             questionsAnswered + ' right!!!<br /> Percentage: ' +  
-            percentage + '%. <br />Questions Remaining: ' + (questions.length - questionsAnswered) + 
-            'Average Time Per Question: ');
+            percentage + '%. <br />Questions Remaining: ' + (questions.length - questionsAnswered));
         return score;
     }
     
@@ -244,7 +246,21 @@
         // console.log(temp)
         var ts = temp[0].split(":");
         
-        $worked.html(ts[1]+":"+ts[2]);
+        $worked.html(ts[1] + ":" + ts[2]);
         setTimeout(updateTimer, 1000);
+    }
+
+    Array.prototype.shuffle = function () {
+        var input = this;
+
+        for (var i = input.length - 1; i >= 0; i--) {
+
+            var randomIndex = Math.floor(Math.random() * (i + 1));
+            var itemAtIndex = input[randomIndex];
+
+            input[randomIndex] = input[i];
+            input[i] = itemAtIndex;
+        }
+        return input;
     }
 })();
