@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dynamic Supply Chain Quiz</title>
+
+    <link type='text/css' rel='stylesheet' href='main.css' />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans" />
+</head>
+
+<body>
+    <div class="container" id='container'>
+        <div>
+            <div id='title'>
+                <h1>Supply Chain - Dynamic Quiz</h1>
+            </div>
+            <div class="radios">
+                    <input type="radio" id="module1"
+                     name="module" value="module1" checked>
+                    <label for="module1">Module1</label>
+                
+                    <input type="radio" id="module2"
+                     name="module" value="module2">
+                    <label for="module2">Module2</label>
+                
+                    <input type="radio" id="module3"
+                     name="module" value="module3">
+                    <label for="module3">Module 3</label>
+                  </div>
+            <div> Total Questions:
+                <div class='number'></div>
+            </div>
+            <br/>
+            <div id='quiz'></div>
+
+            <div class="btn-group">
+                <div class='button' id='next'>
+                    <a class="btn btn-success btn-sm" href='#'>Next</a>
+                    <!-- <button class="btn btn-primary">NEXT</button> -->
+                </div>
+                <div class='button' id='prev'>
+                    <a class="btn btn-success btn-sm" href='#'>Prev</a>
+                </div>
+                <div class='button' id='start'>
+                    <a class="btn btn-success btn-sm" href='#'>Start Test</a>
+                </div>
+                <div class='button' id='show'>
+                    <a class="btn btn-success btn-sm" href='#'>Show</a>
+                </div>
+                <div class='button' id='currentScore'>
+                    <a class="btn btn-success btn-sm" href='#'>Score</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.core.js"></script>
+    <script type="text/javascript" src='questions.json'></script>
+    <script type='text/javascript' src='main.js'></script>
+    <script>
+        $(document).ready(function () {
+            $("#show").click(function () {
+                $("#answer").toggle();
+            });
+
+        });
+    </script>
+</body>
+
+</html>
