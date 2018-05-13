@@ -68,6 +68,8 @@
             });
         }
 
+        setTimeout(updateTimer, 1000);
+
         e.preventDefault();
 
         if (quiz.is(':animated')) {
@@ -218,23 +220,31 @@
                 numCorrect++;
             }
         }
-
-        score.append('You got ' + numCorrect + ' questions out of ' +
-            questionsAnswered + ' right!!!');
+        var percentage = Math.round((numCorrect/questionsAnswered)*100) || 0;
+        var timer = $("#worked");
+        score.append('<br />You got ' + numCorrect + ' questions out of ' +
+            questionsAnswered + ' right!!!<br /> Percentage: ' +  
+            percentage + '%. <br />Questions Remaining: ' + (questions.length - questionsAnswered) + 
+            'Average Time Per Question: ');
         return score;
-        // console.log(numCorrect)
-        // console.log(questionsAnswered)
     }
+    
 
-    function shuffle(a) {
-        var j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = a[i];
-            a[i] = a[j];
-            a[j] = x;
-        }
-        return a;
+    function updateTimer() {
+        var $worked = $("#worked");
+        var myTime = $worked.html();
+        var ss = myTime.split(":");
+        var dt = new Date();
+        dt.setHours(0);
+        dt.setMinutes(ss[0]);
+        dt.setSeconds(ss[1]);
+        
+        var dt2 = new Date(dt.valueOf() + 1000);
+        var temp = dt2.toTimeString().split(" ");
+        // console.log(temp)
+        var ts = temp[0].split(":");
+        
+        $worked.html(ts[1]+":"+ts[2]);
+        setTimeout(updateTimer, 1000);
     }
-
 })();
